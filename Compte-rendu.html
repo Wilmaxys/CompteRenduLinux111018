@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Compte-rendu.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="compte-rendu-081018-administration-linux">Compte-rendu 08/10/18 (Administration Linux)</h1>
+<h2 id="cr%C3%A9ation-de-la-machine-virtuelle">Création de la machine virtuelle</h2>
+<p>Pour créer la machine virtuelle sur le cloud de l'école, il faut récupérer ces informations sur le commun.</p>
+<table>
+<thead>
+<tr>
+<th>Catégorie</th>
+<th>Adress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Plage ip</td>
+<td>172.16.0.82 à 94</td>
+</tr>
+<tr>
+<td>Masque</td>
+<td>255.255.255.240 (/28)</td>
+</tr>
+<tr>
+<td>Gateway</td>
+<td>172.16.0.81</td>
+</tr>
+<tr>
+<td>DNS1</td>
+<td>192.168.90.55</td>
+</tr>
+<tr>
+<td>DNS2</td>
+<td>192.168.90.68</td>
+</tr>
+</tbody>
+</table>
+<p>Il faut suivre la procédure VMM présent également sur le commun.</p>
+<p><a href="#markdown-worksheet">Back To The Top</a></p>
+<hr>
+<h2 id="installation-de-la-machine-debian">Installation de la machine Debian</h2>
+<h4 id="lancement-de-la-machine">Lancement de la machine</h4>
+<ol>
+<li>
+<p>sélectionner &quot;install&quot; pour faire une installation classique.</p>
+<p><img src="./src/img/img001.png" alt="Image 001"></p>
+</li>
+<li>
+<p>Donner un nom à votre machine.</p>
+<p><img src="./src/img/img002.png" alt="Image 002"></p>
+</li>
+</ol>
+<h4 id="configuration">Configuration</h4>
+<ol>
+<li>
+<h4 id="si-votre-machine-ne-r%C3%A9cup%C3%A8re-pas-informations-toute-seule">Si votre machine ne récupère pas informations toute seule.</h4>
+<ol>
+<li>Configurer l'ip de la machine.</li>
+<li>Configurer le domaine.</li>
+<li>Configurer l'adresse de la gateway.</li>
+<li>Configurer les DNS.</li>
+</ol>
+</li>
+<li>
+<p>Configurer l'utilisateur root en lui donnant un mot de passe.</p>
+</li>
+<li>
+<p>Créer un nouvel utilisateur en lui donnant un nom d'utilisateur et un mdp.</p>
+</li>
+</ol>
+<h4 id="partionnement">Partionnement</h4>
+<ol>
+<li>
+<p>Choisir un partionnement Manuel.</p>
+<p><img src="./src/img/img007.png" alt="Image 007"></p>
+</li>
+<li>
+<h4 id="choisir-le-disque-%C3%A0-partitionner">Choisir le disque à partitionner.</h4>
+<ol>
+<li>
+<p>Valider la création d'une table de partition sur le disque pour allouer l'espace et pouvoir le partionné.</p>
+</li>
+<li>
+<p>Choisir l'espace libre nouvellement créer.</p>
+<p><img src="./src/img/img013.png" alt="Image 013"></p>
+</li>
+<li>
+<p>Créer une nouvelle partition.</p>
+</li>
+<li>
+<p>Mettre l'espace disque nécessaire.</p>
+</li>
+<li>
+<p>Choisir le type primaire.</p>
+</li>
+<li>
+<p>Choisir l'emplacement &quot;Début&quot;.</p>
+</li>
+<li>
+<p>Choisir utiliser comme : système de fichiers ext2.</p>
+<p><img src="./src/img/img025.png" alt="Image 025"></p>
+</li>
+<li>
+<p>Choisir comme point d'amorçage : /boot</p>
+</li>
+<li>
+<p>Choisir comme indicateur d'amorçage : présent.</p>
+</li>
+</ol>
+<p>Utiliser ce tableau pour connaître les partitions à créer.</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>Point d'amorçage</th>
+<th>Utiliser comme</th>
+<th>Indicateur d'amorçage</th>
+<th>Espace disque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Primaire</td>
+<td>/boot</td>
+<td>système de fichier ext2</td>
+<td>Présent</td>
+<td>0.5GB</td>
+</tr>
+<tr>
+<td>Primaire</td>
+<td>x</td>
+<td>Volume physique pour LVM</td>
+<td>Absent</td>
+<td>Restant</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h4 id="configurer-le-lvm">Configurer le LVM</h4>
+<ol>
+<li>
+<p>Configurer le gestionnaire de volumes logiques (LVM)</p>
+</li>
+<li>
+<p>Mettre oui quand il demande si il faut écrire les modifications sur les disques et configurer les LVM?</p>
+<p><img src="./src/img/img011.png" alt="Image 011"></p>
+</li>
+<li>
+<p>Donner un nom au groupe de volume à créer. (Ici vg_00)</p>
+</li>
+<li>
+<p>Associer le bon volume physique au groupe de volume.</p>
+<p><img src="./src/img/img017.png" alt="Image 017"></p>
+</li>
+<li>
+<p>Créer les volumes logiques.</p>
+<p>Utiliser ce tableau pour créer les volumes logiques.</p>
+<table>
+<thead>
+<tr>
+<th>Taille</th>
+<th>Volume Logique</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Gb</td>
+<td>lv_root</td>
+</tr>
+<tr>
+<td>3 Gb</td>
+<td>lv_var</td>
+</tr>
+<tr>
+<td>2 Gb</td>
+<td>lv_var_log</td>
+</tr>
+<tr>
+<td>1 Gb</td>
+<td>lv_tmp</td>
+</tr>
+<tr>
+<td>3 Gb</td>
+<td>lv_usr</td>
+</tr>
+<tr>
+<td>2 Gb</td>
+<td>lv_home</td>
+</tr>
+<tr>
+<td>2 Gb</td>
+<td>lv_srv</td>
+</tr>
+<tr>
+<td>2 Gb</td>
+<td>lv_opt</td>
+</tr>
+<tr>
+<td>0,5 Gb</td>
+<td>lv_var_www</td>
+</tr>
+<tr>
+<td>1 Gb</td>
+<td>lv_swap</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque volume logique est important mais sans le root votre machine ne démarrera pas.</p>
+<ol>
+<li>Definir le nom du volume logique.</li>
+<li>Définir sa taille.</li>
+</ol>
+</li>
+<li>
+<p>Terminer</p>
+<p><img src="./src/img/img023.png" alt="Image 023"></p>
+</li>
+<li>
+<p>Partionner l'espace libre de chape volume logique.</p>
+<p><img src="./src/img/img024.png" alt="Image 024"></p>
+<ol>
+<li>
+<p>Paramétrer chaque partition à l'aide de ce tableau.</p>
+<table>
+<thead>
+<tr>
+<th>Point de montage</th>
+<th>Taille</th>
+<th>Volume Logique</th>
+<th>Système de fichiers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/</td>
+<td>4 Gb</td>
+<td>lv_root</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>3 Gb</td>
+<td>lv_var</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/var/log</td>
+<td>2 Gb</td>
+<td>lv_var_log</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>1 Gb</td>
+<td>lv_tmp</td>
+<td>EXT2</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>0,5 Gb</td>
+<td></td>
+<td>EXT2</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>3 Gb</td>
+<td>lv_usr</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/home</td>
+<td>2 Gb</td>
+<td>lv_home</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/srv</td>
+<td>2 Gb</td>
+<td>lv_srv</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>2 Gb</td>
+<td>lv_opt</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td>/var/www</td>
+<td>0,5 Gb</td>
+<td>lv_var_www</td>
+<td>EXT4</td>
+</tr>
+<tr>
+<td></td>
+<td>1 Gb</td>
+<td>lv_swap</td>
+<td>SWAP</td>
+</tr>
+</tbody>
+</table>
+<p><img src="./src/img/img003.png" alt="Image 003"></p>
+</li>
+<li>
+<p>Terminer</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="fin-de-la-configuration">Fin de la configuration</h4>
+<ol>
+<li>
+<p>Demande si l’on doit appliquer les mises a jour au disques répondre Oui</p>
+</li>
+<li>
+<p>Demande si l'on doit utiliser un mirroir réseau répondre Non</p>
+</li>
+<li>
+<p>Dire que l'on ne souhaite pas participer à l'étude statistique.</p>
+</li>
+<li>
+<p>Installer seulement les deux derniers logiciels.</p>
+<p><img src="./src/img/img028.png" alt="Image 028"></p>
+</li>
+<li>
+<h4 id="r%C3%A9pondre-oui-%C3%A0-linstallation-de-grub">Répondre OUI à l'installation de grub.</h4>
+</li>
+<li>
+<p>Choisir le disque ou installer grub.</p>
+</li>
+</ol>
+<p><a href="#markdown-worksheet">Back To The Top</a></p>
+<hr>
+
+</body>
+</html>
