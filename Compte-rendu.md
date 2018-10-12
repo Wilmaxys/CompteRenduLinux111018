@@ -1,5 +1,78 @@
 # Compte-rendu 08/10/18 (Administration Linux)
 
+## Tables des matières
+
+- [Compte-rendu 08/10/18 (Administration Linux)](#compte-rendu-081018-administration-linux)
+    - [Tables des matières](#tables-des-matières)
+    - [Historique des versions](#historique-des-versions)
+    - [Auteurs et intervenants](#auteurs-et-intervenants)
+    - [Objectif](#objectif)
+    - [Logical Volume Management(LVM)](#logical-volume-managementlvm)
+
+        - [Avantages](#avantages)
+        - [Inconvénients](#inconvénients)
+    - [Création de la machine virtuelle](#création-de-la-machine-virtuelle)
+    - [Installation de la machine Debian](#installation-de-la-machine-debian)
+
+        - [Lancement de la machine](#lancement-de-la-machine)
+        - [Configuration](#configuration)
+        - [Partionnement](#partionnement)
+        - [Configurer le LVM](#configurer-le-lvm)
+        - [Fin de la configuration](#fin-de-la-configuration)
+    - [Connexion via putty (SSH)](#connexion-via-putty-ssh)
+    - [Connexion via clé asymétrique (SSH)](#connexion-via-clé-asymétrique-ssh)
+    - [Modifier le bashrc pour créer des alias](#modifier-le-bashrc-pour-créer-des-alias)
+    - [Connection via Filezilla/WinSCP (SFTP)](#connection-via-filezillawinscp-sftp)
+
+        - [Filezilla](#filezilla)
+        - [WinSCP](#winscp)
+    - [Changer l'ip de la machine](#changer-lip-de-la-machine)
+
+        - [Installation de screen](#installation-de-screen)
+        - [Commande utile](#commande-utile)
+        - [Changer l'ip de la machine en direct](#changer-lip-de-la-machine-en-direct)
+        - [Changer l'ip de la machine avec un redémarrage](#changer-lip-de-la-machine-avec-un-redémarrage)
+
+
+## Historique des versions
+
+| Version | Descriptif                    |
+| ------- | ----------------------------- |
+| v 1.0.0 | Créations de la documentation |
+
+## Auteurs et intervenants
+
+| Date d'interventions | Intervenant    | Descriptif                    |
+| -------------------- | -------------- | ----------------------------- |
+| 12/10/2018           | Benjamin Ragot | Créations de la documentation |
+
+## Objectif
+
+Les objectifs de cette documentation est de montrer pas à pas la mise en place d'une machine Debian 9.4, partitionné et avec l'utilisation d'un LVM, de montrer la connection SSH avec et sans l'utilisation de clé asymétrique,
+la connection à une machine par SFTP, la création d'allias et le changement d'ip à chaud et à froid.
+
+Un système cryptographie à clé publique est en fait basé sur deux clés :
+
+1. Une clé publique, pouvant être distribuée librement, c'est le cadenas ouvert
+2. Une clé secrète, connue uniquement du receveur, c'est le cadenas fermé
+
+## Logical Volume Management(LVM)
+
+Couche d'abstraction entre matériel et logiciel, permet une gestion plus souple du stockage a chaud par exemple.
+
+#### Avantages
+
+- Gestion souple
+- Agrandissements et réductions
+- partitions primaires / étendues
+- Snapshots
+
+#### Inconvénients
+
+- perte de performances
+- risque de fragmentations accrues
+- perte de volume logique en cas de perte d’un volume physique
+
 ## Création de la machine virtuelle
 
 Pour créer la machine virtuelle sur le cloud de l'école, il faut récupérer ces informations sur le commun.
@@ -13,6 +86,14 @@ Pour créer la machine virtuelle sur le cloud de l'école, il faut récupérer c
 | DNS2      | 192.168.90.68         |
 
 Il faut suivre la procédure VMM présent également sur le commun.
+
+| Catégorie           | Description |
+| ------------------- | ----------- |
+| OS                  | Debian 9.4  |
+| Ram                 | 1 Go        |
+| Stockage            | 40 Gb       |
+| Processeur          | 1           |
+| Haute-disponibilité | Oui         |
 
 [Back To The Top](#markdown-worksheet)
 
@@ -165,6 +246,8 @@ Il faut suivre la procédure VMM présent également sur le commun.
 
 ## Connexion via clé asymétrique (SSH)
 
+L'intérêt d'une clé asymétrique est de limiter le risque, de man in the middle par exemple, en ne communiquant pas une clé symétrique.
+
 1. Lancer Putty Gen
 2. Créer une clé.
 
@@ -235,5 +318,95 @@ le but d'un alias est de faire des raccourcis de commande.
 
 ---
 
-## Connection via Filezila/WinSCP (SFTP)
+## Connection via Filezilla/WinSCP (SFTP)
 
+#### Filezilla
+
+1. Lancer Filezilla
+    
+    ![Image 038](./src/img/img038.png)
+2. En hôte mettre l'adresse ip de la machine
+3. En identifiant mettre la session utilisateur
+4. En mot de passe le mot de passe de la session utilisateur
+5. En port le port 22.
+
+Vous arrivez alors dans le home de l'utilisateur.
+
+#### WinSCP
+
+1. Lancer WinSCP
+
+    ![Image 039](./src/img/img039.png)
+2. Choisir le protocole SFTP.
+3. En nom d'hôte mettre l'ip de la machine.
+4. En port mettre le port 22.
+5. En nom d'utilisateur le nom d'utilisateur.
+
+Vous arrivez alors dans le home de l'utilisateur.
+
+---
+
+## Changer l'ip de la machine
+
+#### Installation de screen
+
+Screen permet de ne pas couper les processus lancés à la perte de la session. On peut lancer plusieurs sessions avec plusieurs scripts en même et se reconnecter a chacune après en être partie.
+
+1. Aller dans le dossier etc/apt.
+2. Éditer le ficher sources.list
+
+        nano sources.list
+
+3. Commenter les deux lignes relatives aux DVD.
+4. Ajouter ces deux lignes.
+
+    1. Première ligne.
+
+            deb http://deb.debian.org/debian stretch main
+
+    2. Deuxième ligne.
+
+            deb-src http://deb.debian.org/debian stretch main
+
+5. Lancer un upgrade et un update.
+
+    1. Update.
+
+            apt update
+
+    2. Upgrade.
+
+            apt upgrade
+
+6. Installer screen.
+
+        apt install screen
+
+##### Commande utile
+
+1. Changer de session faire un Ctrl + Alt + A.
+2. Démarrer une nouvelle session par commande.
+
+        Screen -S nom
+3. Se reconnecter a un screen (session).
+
+        screen -r nom
+
+#### Changer l'ip de la machine en direct
+
+1. Lancer un nouveau screen.
+
+        Screen -S ipChange
+2. Lancer ces commandes
+
+        ip address del 172.16.0.82/28(exemple) dev eth0;  ip address add 172.16.0.83/28(exemple) dev eth0; ip route add default via “gateway”
+
+    Attention lancer les 3 commandes en une ligne car vous perdrez la connexion à la première et la session screen continuera de tourner mais il faut qu'elle ai les instruction à éxécuter.
+
+#### Changer l'ip de la machine avec un redémarrage
+
+1. Allez dans le dossier etc/network.
+2. Modifier l'ip dans le fichiers interfaces.
+
+        nano interfaces
+3. redémarrer la machine.
