@@ -1,5 +1,7 @@
 # Compte-rendu 08/10/18 (Administration Linux)
 
+#### Documentation réalisée avec MarkDown
+
 ## Tables des matières
 
 - [Compte-rendu 08/10/18 (Administration Linux)](#compte-rendu-081018-administration-linux)
@@ -94,8 +96,6 @@ Il faut suivre la procédure VMM présent également sur le commun.
 | Stockage            | 40 Gb       |
 | Processeur          | 1           |
 | Haute-disponibilité | Oui         |
-
-[Back To The Top](#markdown-worksheet)
 
 ---
 
